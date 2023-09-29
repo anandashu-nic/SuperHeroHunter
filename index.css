@@ -1,0 +1,66 @@
+/*styling the characters-container*/
+#characters-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0 auto;
+  width: 100%;
+}
+/* Initial styles for the h1 tag */
+.page-title {
+    color: black; /* Initial text color */
+    padding: 10px;
+    transition: background-color 0.3s, color 0.3s; /* Transition for smooth animation */
+    transition: 0.5s, color 0s .5s, background-color 0s .5s;
+    margin: 0 auto;
+  }
+  
+  /* Hover styles */
+  .page-title:hover {
+    font-size: 2rem; /* Hover font size */
+    transform: scale(1); /* Hover scaling */
+    color: white; /* Hover text color */
+    transition: 0s, color .5s, background-color .5s;
+  }
+
+body {
+    background-image: url('https://images.unsplash.com/photo-1635863138275-d9b33299680b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1931&q=80');
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-repeat: no-repeat; /* Prevents image from repeating */
+    background-attachment: fixed; /* Keeps the image fixed while scrolling */
+  }
+
+.page-title{
+    color:white;
+    text-align:center;
+    padding: 3rem;
+}
+
+  .card{
+    background-color:#000;
+    color:white;
+    margin:4rem;
+}
+.card:hover{
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+.cardBodyDiv{
+    background-color:blue;
+    color:white;
+    margin:4rem;
+}
+.cardTitle{
+    background-color:blue;
+    color:white;
+    margin:4rem;
+}
+.card-buttons{
+
+    margin:1rem;
+}
+.card-buttons:hover{
+    background-color:black;
+    color:white;
+}
+

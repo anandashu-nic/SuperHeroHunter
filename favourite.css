@@ -1,0 +1,61 @@
+/* Card container styles */
+.character-card {
+    width: 300px; /* Adjust the card width as needed */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  .character-card:hover{
+    transform: scale(1.1);
+    transition: 0.5s;
+  }
+  
+  /* Character image styles */
+  .character-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%; /* To make the image round, if desired */
+  }
+  
+  /* Character name styles */
+  .character-name {
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+  }
+
+  .container{
+    margin-top: 7rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  /* Read more button styles */
+  .read-more-button {
+    background-color: black; /* Button background color */
+    color: #fff; /* Button text color */
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+  }
+  
+  /* Hover effect for the button */
+  .read-more-button:hover {
+    background-color: #0056b3; /* Button background color on hover */
+  }
+  
+  body {
+    background-image: url('https://images.unsplash.com/photo-1635863138275-d9b33299680b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1931&q=80');
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-repeat: no-repeat; /* Prevents image from repeating */
+    background-attachment: fixed; /* Keeps the image fixed while scrolling */
+    
+  }
+  

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Character Detail</title>
+    <link rel="stylesheet" href="./characterDetail.css" />
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f0f0f0; 
+      }
+
+      .card {
+        display: flex;
+        width: 90%;
+        max-width: 800px;
+        background-color: #fff; /* Card background color */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Card shadow */
+        background-color: black;
+        color: white;
+      }
+      .card:hover {
+        transform: scale(1.1);
+        transition: 0.5s;
+      }
+
+      .character-poster {
+        flex: 1;
+        text-align: center;
+      }
+
+      .character-poster img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .character-info {
+        flex: 2;
+        padding-left: 20px; /* Add spacing between poster and info */
+      }
+
+      .comics-list {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="character-poster">
+        <!-- Character image will be loaded here -->
+      </div>
+      <div class="character-info">
+        <!-- Character info will be loaded here -->
+      </div>
+      <div class="comics-list" id="comics-lists">
+        <!-- Comics list will be loaded here -->
+        <p>Comics here !!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+      </div>
+    </div>
+    <script>
+      // Get the character ID from the query parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const characterId = urlParams.get("id");
+
+      // Function to load character details based on characterId
+      function loadCharacterDetails(characterId, characterName) {
+        let characterWrapper = document.querySelector(".character-info");
+
+        // Check if the characterWrapper exists
+        if (characterWrapper) {
+          characterWrapper.innerHTML = "Loading...";
+
+          // Construct the URL to fetch character details based on characterId
+          const url = `https://gateway.marvel.com:443/v1/public/characters/${characterId}?ts=1&apikey=d51901e0cddf18f727fd9890c85bf119&hash=3c0807be06a02606d35aa7c35b9635aa`;
+
+          fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+              const character = data.data.results[0];
+              console.log(character);
+              console.log(character.comics.items);
+              const { name, description, thumbnail } = character;
+              characterWrapper.innerHTML = `
+                            <h3>${character.name}</h3>
+                            <p>${description || "Description not found"}</p>
+                        `;
+              loadCharacterPoster(thumbnail);
+              debugger;
+              loadComicsList(character.comics.items);
+              debugger;
+            })
+            .catch((error) => {
+              console.error(error);
+              characterWrapper.innerHTML = "Failed to load character details.";
+            });
+        }
+      }
+
+      // Function to load the character poster
+      function loadCharacterPoster(thumbnail) {
+        let characterPoster = document.querySelector(".character-poster");
+
+        // Check if the characterPoster exists
+        if (characterPoster) {
+          characterPoster.innerHTML = `
+            <img
+              src="${thumbnail.path}.${thumbnail.extension}"
+              alt="${name}"
+            >
+          `;
+        }
+      }
+
+      // Function to load the comics list
+      function loadComicsList(comicsItems) {
+        debugger;
+        let comicsListWrapper = document.querySelector(".comics-list");
+        debugger;
+
+        // Check if the comicsListWrapper exists
+        if (comicsListWrapper) {
+          debugger;
+          comicsListWrapper.innerHTML = "<h4>Comics List</h4>";
+          if (comicsItems.length === 0) {
+            comicsListWrapper.innerHTML +=
+              "<p>No comics available for this character.</p>";
+          } else {
+            debugger;
+            const ul = document.createElement("ul");
+            for (const comic of comicsItems) {
+              const li = document.createElement("li");
+              li.textContent = comic.name;
+              ul.appendChild(li);
+            }
+            debugger;
+
+            comicsListWrapper.appendChild(ul);
+          }
+        }
+      }
+
+      // Call the function to load character details
+      loadCharacterDetails(characterId, "Character Name");
+    </script>
+  </body>
+</html>
